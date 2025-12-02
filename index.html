@@ -629,6 +629,7 @@
                 return;
             }
 
+            // School Validation
             const schoolInput = document.getElementById('school');
             const schoolList = document.getElementById('school_list');
             const validOptions = Array.from(schoolList.options).map(opt => opt.value);
@@ -636,6 +637,16 @@
                 alert('Please select a valid school from the list.');
                 return;
             }
+
+            // NEW: Position Validation
+            const positionInput = document.getElementById('position');
+            const positionList = document.getElementById('position_list');
+            const validPositions = Array.from(positionList.options).map(opt => opt.value);
+            if (positionInput.value && !validPositions.includes(positionInput.value)) {
+                alert('Please select a valid position from the list. If your position is not listed, please check the spelling or select the closest match.');
+                return;
+            }
+
             document.getElementById('confirmModal').classList.add('active');
         });
 
