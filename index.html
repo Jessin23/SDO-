@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDO Mandaluyong Request Slip Form</title>
     <style>
-        /* --- KEEPING YOUR EXACT STYLES UNTOUCHED --- */
+        /* --- CORE DESIGN (FROM CODE A) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Georgia', serif;
@@ -17,86 +17,89 @@
             display: flex; justify-content: center; align-items: center; padding: 20px;
             overflow-x: hidden; min-height: 100vh;
         }
-        .container { background: white; border-radius: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-width: 700px; width: 100%; overflow: hidden; position: relative; z-index: 10; margin: 0 auto; }
-        
+        .container { background: white; border-radius: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-width: 800px; width: 100%; overflow: hidden; position: relative; z-index: 10; margin: 0 auto; }
         .header { background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); padding: 25px 30px; text-align: center; position: relative; border-bottom: 4px solid #2563a8; }
         
-        /* --- MODIFIED HEADER LAYOUT FOR DYNAMIC RESPONSE --- */
-        .header-logos { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 20px; 
-            gap: 10px; /* Space between elements */
-            flex-direction: row; /* Ensure they start in a row */
-        }
-        
-        .logo-placeholder { 
-            width: 80px; 
-            height: 80px; 
-            background: rgb(255, 255, 255); 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            overflow: hidden; 
-            padding: 5px; 
-            flex-shrink: 0; /* Prevents logos from getting squashed */
-        }
-        
+        /* Header Flex Settings */
+        .header-logos { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-direction: row; }
+        .logo-placeholder { width: 80px; height: 80px; background: rgb(255, 255, 255); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 5px; flex-shrink: 0; }
         .logo-placeholder img { width: 100%; height: 100%; object-fit: contain; }
-        
-        /* Container for the text to allow it to flex */
-        .header-text-container {
-            flex: 1; /* Takes up remaining space between logos */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
+        .header-text-container { flex: 1; display: flex; flex-direction: column; align-items: center; }
         .header h1 { color: white; font-size: 28px; margin-bottom: 5px; letter-spacing: 2px; line-height: 1.2; }
         .header h2 { color: white; font-size: 20px; font-weight: normal; letter-spacing: 1px; line-height: 1.2; }
-        
+       
+        /* FORM CONTENT */
         .form-content { padding: 40px 50px; background: rgba(255, 255, 255, 0.98); }
-        .form-group { margin-bottom: 35px; }
-        .name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .name-left-column { display: flex; flex-direction: column; gap: 20px; }
-        .name-group { margin-bottom: 0; }
-        input[type="text"].short-field { width: 100%; }
+        .form-group { margin-bottom: 25px; }
         label { display: block; margin-bottom: 10px; color: #333; font-weight: normal; font-size: 18px; }
-        input[type="text"], input[list], select { width: 100%; padding: 15px 20px; border: none; border-bottom: 2px solid #333; background: transparent; font-size: 16px; font-family: 'Georgia', serif; transition: border-color 0.3s; }
-        input[type="text"]:focus, input[list]:focus, select:focus { outline: none; border-bottom-color: #4a90e2; }
-        input[list]::-webkit-calendar-picker-indicator { opacity: 0.6; cursor: pointer; transition: opacity 0.3s; }
-        input[list]:hover::-webkit-calendar-picker-indicator { opacity: 1; }
-        .documents-section { margin-top: 40px; padding: 30px; background: rgba(240, 248, 255, 0.5); border-radius: 20px; }
-        .documents-section h3 { color: #333; margin-bottom: 20px; font-size: 20px; }
-        .checkbox-group { display: flex; align-items: center; margin-bottom: 15px; }
-        input[type="checkbox"] { width: 22px; height: 22px; margin-right: 15px; cursor: pointer; border: 2px solid #333; }
-        .checkbox-group label { margin: 0; cursor: pointer; font-weight: normal; font-size: 16px; }
-        .sub-options { margin-left: 40px; margin-top: 10px; display: none; }
-        .sub-options.active { display: block; }
-        .sub-checkbox-group { display: flex; align-items: center; margin-bottom: 10px; }
-        .sub-checkbox-group input[type="checkbox"] { width: 18px; height: 18px; }
-        .sub-checkbox-group label { font-size: 15px; color: #555; }
-        .submit-btn { width: 200px; padding: 15px; background: white; color: #333; border: 2px solid #333; border-radius: 25px; font-size: 18px; font-weight: normal; cursor: pointer; transition: all 0.3s; margin-top: 30px; display: block; margin-left: auto; margin-right: auto; font-family: 'Georgia', serif; }
+       
+        /* INPUT STYLES */
+        input[type="text"], input[list], select, input[type="password"], input[type="email"] {
+            width: 100%; padding: 15px 10px; border: none; border-bottom: 2px solid #333;
+            background: transparent; font-size: 16px; font-family: 'Georgia', serif; transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[list]:focus, select:focus, input[type="password"]:focus, input[type="email"]:focus {
+            outline: none; border-bottom-color: #4a90e2;
+        }
+       
+        /* GRID SYSTEMS */
+        .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .row-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 10px; }
+        
+        /* CHECKBOXES & RADIO */
+        .radio-group { display: flex; gap: 20px; margin-top: 10px; }
+        .radio-item, .checkbox-group { display: flex; align-items: center; cursor: pointer; }
+        input[type="radio"], input[type="checkbox"] {
+            width: 20px; height: 20px; margin-right: 10px; cursor: pointer; accent-color: #4a90e2; margin:5px;
+        }
+       
+        /* SECTIONS */
+        .section-box { margin-top: 30px; padding: 25px; background: rgba(240, 248, 255, 0.5); border-radius: 20px; border: 1px solid #e1e8ed; }
+        .section-title { color: #333; margin-bottom: 15px; font-size: 20px; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .subsection-title { color: #4a90e2; font-weight: bold; margin-bottom: 10px; margin-top: 15px; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+        .subsection-title.green { color: #27ae60; }
+       
+        /* BUTTONS */
+        .submit-btn {
+            width: 250px; padding: 15px; background: white; color: #333; border: 2px solid #333;
+            border-radius: 25px; font-size: 18px; cursor: pointer; transition: all 0.3s;
+            margin: 40px auto 0; display: block; font-family: 'Georgia', serif;
+        }
         .submit-btn:hover { background: #4a90e2; color: white; border-color: #4a90e2; }
-        /* Modal Styles */
+
+        /* FOOTER */
+        .footer { background: linear-gradient(to right, #4a90e2, #357abd); color: white; padding: 15px 30px; font-size: 15px; border-top: 3px solid #2563a8; text-align: center; }
+        .footer-content { display: flex; justify-content: center; align-items: center; gap: 12px; }
+        .footer-icon { font-size: 22px; display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; background: white; border-radius: 50%; color: #4a90e2; }
+
+        /* UTILITIES */
+        .hidden { display: none !important; }
+        .required { color: #e74c3c; }
+        .readonly-field { background-color: transparent; cursor: not-allowed; color: #666; }
+       
+        /* ANIMATIONS */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+       
+        /* LOGICAL TOGGLES */
+        .sub-container { margin-left: 25px; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .sub-container.closed { max-height: 0; opacity: 0; }
+        .sub-container.open { max-height: 1000px; opacity: 1; }
+        .checkbox-row { display: flex; align-items: flex-start; margin-bottom: 8px; }
+        .checkbox-label { font-size: 15px; color: #444; cursor: pointer; line-height: 1.4; }
+
+        /* LOGIN SCREEN & MODALS */
+        #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 9999; display: flex; justify-content: center; align-items: center; }
+        .login-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); width: 100%; max-width: 400px; text-align: center; border: 1px solid #ddd; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 2000; }
         .modal.active { display: flex; }
         .modal-content { background: white; padding: 40px; border-radius: 20px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
-        .modal-content h2 { color: #333; margin-bottom: 20px; font-size: 24px; }
-        .modal-content p { color: #666; margin-bottom: 30px; line-height: 1.6; font-size: 16px; }
-        .modal-buttons { display: flex; gap: 15px; justify-content: center; }
-        .modal-btn { padding: 12px 30px; border: 2px solid #333; border-radius: 25px; font-size: 16px; font-weight: normal; cursor: pointer; transition: all 0.3s; background: white; font-family: 'Georgia', serif; }
+        .modal-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+        .modal-btn { padding: 10px 25px; border-radius: 20px; cursor: pointer; border: 1px solid #ccc; font-family: 'Georgia', serif;}
         .btn-confirm { background: #4a90e2; color: white; border-color: #4a90e2; }
-        .btn-confirm:hover { background: #357abd; border-color: #357abd; }
         .btn-cancel { background: white; color: #333; }
-        .btn-cancel:hover { background: #f0f0f0; }
-        .btn-ok { background: #4a90e2; color: white; border-color: #4a90e2; padding: 12px 50px; }
-        .btn-ok:hover { background: #357abd; border-color: #357abd; }
-        .readonly-field { background-color: transparent; cursor: not-allowed; color: #666; }
-        .required { color: #e74c3c; }
-        /* Mascot Styles */
+
+        /* MASCOT & CONTACT */
         .mascot-container { position: fixed; bottom: 20px; left: 50px; z-index: 100; display: flex; align-items: flex-end; gap: 10px; }
         .tiger-mascot { width: 100px; height: 100px; background: radial-gradient(circle at 30% 30%, #ff9944, #ff6622); border-radius: 50%; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3); cursor: pointer; animation: float 3s ease-in-out infinite; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
         .tiger-mascot:hover { animation: bounce 0.6s ease infinite; transform: scale(1.1); }
@@ -106,10 +109,12 @@
         .tiger-mascot:hover .tiger-face { animation: wiggle 0.5s ease infinite; }
         @keyframes wave { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(5deg); } }
         @keyframes wiggle { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-10deg) scale(1.1); } 75% { transform: rotate(10deg) scale(1.1); } }
+        
         .contact-btn { background: #ffeb3b; color: #333; padding: 15px 30px; border: 3px solid #333; border-radius: 15px 15px 15px 0; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: all 0.3s; font-family: 'Georgia', serif; display: none; }
         .contact-btn.show { display: block; animation: slideIn 0.3s ease; }
         @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
         .contact-btn:hover { background: #fdd835; transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0,0,0,0.3); }
+        
         .contact-popup { position: fixed; bottom: 140px; left: 50px; background: white; border: 3px solid #333; border-radius: 15px; padding: 20px 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 1000; display: none; min-width: 300px; }
         .contact-popup.show { display: block; animation: popIn 0.3s ease; }
         @keyframes popIn { from { opacity: 0; transform: translateY(20px) scale(0.8); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -121,625 +126,652 @@
         .contact-text a:hover { text-decoration: underline; }
         .close-contact { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; transition: color 0.3s; }
         .close-contact:hover { color: #333; }
+        
         .tiger-speech-bubble { position: fixed; bottom: 100px; left: 140px; background: white; color: #333; padding: 12px 18px; border-radius: 20px; border: 3px solid #333; font-size: 14px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 99; animation: bubbleBounce 2s ease-in-out infinite; display: none; white-space: nowrap; }
         .tiger-speech-bubble.show { display: block; }
         .tiger-speech-bubble::before { content: ''; position: absolute; top: 50%; left: -15px; transform: translateY(-50%); width: 0; height: 0; border-style: solid; border-width: 10px 15px 10px 0; border-color: transparent #333 transparent transparent; }
         .tiger-speech-bubble::after { content: ''; position: absolute; top: 50%; left: -9px; transform: translateY(-50%); width: 0; height: 0; border-style: solid; border-width: 8px 12px 8px 0; border-color: transparent white transparent transparent; }
         @keyframes bubbleBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        .footer { background: linear-gradient(to right, #4a90e2, #357abd); color: white; padding: 15px 30px; font-size: 15px; border-top: 3px solid #2563a8; }
-        .footer-content { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: nowrap; }
-        .footer-icon { font-size: 22px; display: flex; align-items: center; justify-content: center; min-width: 35px; width: 35px; height: 35px; background: white; border-radius: 50%; color: #4a90e2; box-shadow: 0 2px 8px rgba(0,0,0,0.2); flex-shrink: 0; }
-        .footer-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        
-        /* --- MEDIA QUERIES FOR TABLET/MOBILE RESPONSIVENESS --- */
+
+        /* RESPONSIVENESS */
         @media (max-width: 768px) {
             .container { margin: 0 10px; border-radius: 20px; }
-            
-            /* FORCE ROW layout on tablet so logos don't stack */
-            .header-logos { 
-                flex-direction: row; 
-                gap: 5px; 
-            }
-            
-            /* Shrink logos on tablet */
-            .logo-placeholder {
-                width: 60px;
-                height: 60px;
-            }
-            
-            /* Shrink text on tablet */
+            .header-logos { flex-direction: row; gap: 5px; }
+            .logo-placeholder { width: 60px; height: 60px; }
             .header h1 { font-size: 18px; letter-spacing: 1px; }
             .header h2 { font-size: 14px; letter-spacing: 0.5px; }
-
-            .name-row { grid-template-columns: 1fr; }
+            .row-2, .row-4 { grid-template-columns: 1fr; }
             .mascot-container { left: 20px; bottom: 10px; }
             .tiger-speech-bubble { left: 100px; }
             .contact-popup { left: 50%; transform: translateX(-50%); bottom: 120px; }
             .contact-popup.show { transform: translateX(-50%); }
-            .footer-content { flex-direction: column; }
-            .footer-text { white-space: normal; text-align: center; }
         }
 
-        /* For very small screens (Phones) */
         @media (max-width: 480px) {
             .logo-placeholder { width: 50px; height: 50px; }
             .header h1 { font-size: 16px; }
             .header h2 { font-size: 12px; }
             .form-content { padding: 25px 20px; }
         }
+
     </style>
 </head>
 <body>
- 
-    <div class="container">
+
+
+    <!-- 1. LOGIN OVERLAY -->
+    <div id="login-screen">
+        <div class="login-box">
+            <div style="margin-bottom: 20px;">
+                <img src="DepEd NCR logo.png" alt="Logo" style="width: 80px; height: 80px; object-fit: contain;">
+            </div>
+            <h2 style="color: #4a90e2; margin-bottom: 10px;">Employee Access</h2>
+            <p style="color:#666; margin-bottom:20px;">Please enter the Form Password.</p>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email" required style="margin-bottom: 15px;">
+                <input type="password" id="loginPassword" placeholder="Password" required style="margin-bottom: 15px;">
+                <button type="submit" class="submit-btn" style="width:100%; margin-top:10px;">Unlock Form</button>
+            </form>
+            <div id="loginError" style="color: red; margin-top: 15px; font-size: 14px;"></div>
+        </div>
+    </div>
+
+
+    <!-- 2. MAIN CONTAINER -->
+    <div class="container hidden" id="mainContainer">
+       
+        <!-- HEADER -->
         <div class="header">
             <div class="header-logos">
-                <div class="logo-placeholder">
-                    <img src="335402378_923523102004407_5287473594018305126_n.jpg" alt="SDO Logo">
-                </div>
-                <!-- WRAPPED TEXT IN CONTAINER FOR FLEX CONTROL -->
+                <div class="logo-placeholder"><img src="335402378_923523102004407_5287473594018305126_n.jpg" alt="SDO Logo"></div>
                 <div class="header-text-container">
                     <h1>SDO MANDALUYONG</h1>
                     <h2>REQUEST SLIP FORM</h2>
                 </div>
-                <div class="logo-placeholder">
-                    <img src="DepEd NCR logo.png" alt="DepEd Logo">
-                </div>
+                <div class="logo-placeholder"><img src="DepEd NCR logo.png" alt="DepEd Logo"></div>
             </div>
         </div>
        
         <div class="form-content">
-            <form id="documentForm">
-                <div class="form-group">
-                    <label>Name: <span class="required">*</span></label>
-                    <div class="name-row">
-                        <div class="name-left-column">
-                            <div class="name-group">
-                                <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
-                            </div>
-                            <div class="name-group">
-                                <input type="text" id="middleInitial" name="middleInitial" class="short-field" placeholder="Middle Initial" maxlength="2">
-                            </div>
-                        </div>
-                        <div class="name-group">
-                            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+            <form id="requestForm">
+               
+                <!-- TRANSACTION TYPE -->
+                <div class="section-box" style="margin-top: 0;">
+                    <h3 class="section-title">Transaction Details</h3>
+                    <p style="margin-bottom: 10px;">Who is conducting this transaction?</p>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="transactionType" value="myself" checked onclick="toggleRepresentative(false)">
+                            Myself (Document Owner)
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="transactionType" value="representative" onclick="toggleRepresentative(true)">
+                            Authorized Representative
+                        </label>
+                    </div>
+
+                    <div id="representativeFields" class="hidden animate-fade-in" style="margin-top: 20px; border-top: 1px dashed #ccc; padding-top: 15px;">
+                        <div class="row-2">
+                            <div><label>Representative Name:</label><input type="text" id="representativeName"></div>
+                            <div><label>Relationship:</label><input type="text" id="relationship"></div>
                         </div>
                     </div>
                 </div>
 
+                <!-- BASIC INFO -->
+                <div class="form-group" style="margin-top: 30px;">
+                    <label>Name of Document Owner: <span class="required">*</span></label>
+                    <div class="row-2" style="grid-template-columns: 2fr 1fr;">
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="firstName" placeholder="First Name" required>
+                            <input type="text" id="middleInitial" placeholder="M.I." maxlength="2" style="width: 60px; text-align: center;">
+                        </div>
+                        <input type="text" id="lastName" placeholder="Last Name" required>
+                    </div>
+                    <div class="checkbox-group" style="margin-top: 10px;">
+                        <input type="checkbox" id="pwdSenior"> <label for="pwdSenior" style="margin:0">PWD / Senior Citizen</label>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label for="position">Position: <span class="required">*</span></label>
-                    <input list="position_list" id="position" name="position" placeholder="Type to search or select position" required autocomplete="off">
+                    <label>Position: <span class="required">*</span></label>
+                    <input list="position_list" id="position" placeholder="Select or type position" required>
                     <datalist id="position_list">
-                        <!-- TEACHER -->
-                        <option value="Teacher I">
-                        <option value="Teacher II">
-                        <option value="Teacher III">
-                        <option value="Teacher IV">
-                        <option value="Teacher V">
-                        <option value="Teacher VI">
-                        <!-- MASTER TEACHER -->
-                        <option value="Master Teacher I">
-                        <option value="Master Teacher II">
-                        <option value="Master Teacher III">
-                        <option value="Master Teacher IV">
-                        <option value="Master Teacher V">
-                        <option value="Master Teacher VI">
-                        <!-- HEAD TEACHER -->
-                        <option value="Head Teacher I">
-                        <option value="Head Teacher II">
-                        <option value="Head Teacher III">
-                        <option value="Head Teacher IV">
-                        <option value="Head Teacher V">
-                        <option value="Head Teacher VI">
-                        <!-- PRINCIPAL -->
-                        <option value="Principal I">
-                        <option value="Principal II">
-                        <option value="Principal III">
-                        <option value="Principal IV">
-                        <!-- OTHERS -->
-                        <option value="Administrative Aide I">
-                        <option value="Administrative Aide II">
-                        <option value="Administrative Aide III">
-                        <option value="Administrative Aide IV">
-                        <option value="Administrative Aide V">
-                        <option value="Administrative Aide VI">
-                        <option value="Administrative Officer IV, Cash">
-                        <option value="Administrative Officer IV, Personnel">
-                        <option value="Administrative Officer IV, Records">
-                        <option value="Administrative Officer IV, Supply">
-                        <option value="Administrative Officer V">
-                        <option value="Assistant Schools Division Superintendent">
-                        <option value="Chief Education Supervisor, CID">
-                        <option value="Dentist II">
-                        <option value="Education Program Supervisor">
-                        <option value="Education Program Supervisor II">
-                        <option value="Engineer III">
-                        <option value="Information Technology Officer I">
-                        <option value="Legal Officer III">
-                        <option value="Nurse II">
-                        <option value="Planning Officer III">
-                        <option value="Project Development Officer I">
-                        <option value="Project Development Officer II">
-                        <option value="Public School District Supervisor">
-                        <option value="School Governance & Operations Division Chief">
-                        <option value="Schools Division Superintendent">
-                        <option value="Senior Education Program Specialist">
-                        <option value="Guest">
-                        <option value="Non-Teaching Personnel">
+                        <!-- Same list as before -->
+                        <option value="Teacher I"><option value="Teacher II"><option value="Teacher III">
+                        <option value="Teacher IV"><option value="Teacher V"><option value="Teacher VI">
+                        <option value="Master Teacher I"><option value="Master Teacher II"><option value="Master Teacher III">
+                        <option value="Master Teacher IV"><option value="Master Teacher V"><option value="Master Teacher VI">
+                        <option value="Head Teacher I"><option value="Head Teacher II"><option value="Head Teacher III">
+                        <option value="Head Teacher IV"><option value="Head Teacher V"><option value="Head Teacher VI">
+                        <option value="Principal I"><option value="Principal II"><option value="Principal III"><option value="Principal IV">
+                        <option value="Administrative Aide I"><option value="Administrative Aide II"><option value="Administrative Aide III">
+                        <option value="Administrative Aide IV"><option value="Administrative Aide V"><option value="Administrative Aide VI">
+                        <option value="Administrative Officer IV, Cash"><option value="Administrative Officer IV, Personnel">
+                        <option value="Administrative Officer IV, Records"><option value="Administrative Officer IV, Supply">
+                        <option value="Administrative Officer V"><option value="Assistant Schools Division Superintendent">
+                        <option value="Chief Education Supervisor, CID"><option value="Dentist II"><option value="Education Program Supervisor">
+                        <option value="Education Program Supervisor II"><option value="Engineer III"><option value="Information Technology Officer I">
+                        <option value="Legal Officer III"><option value="Nurse II"><option value="Planning Officer III">
+                        <option value="Project Development Officer I"><option value="Project Development Officer II">
+                        <option value="Public School District Supervisor"><option value="School Governance & Operations Division Chief">
+                        <option value="Schools Division Superintendent"><option value="Senior Education Program Specialist">
+                        <option value="Guest"><option value="Non-Teaching Personnel">
                     </datalist>
                 </div>
 
                 <div class="form-group">
-                    <label for="school">School (If not from school e.g. SDO, type "Schools Division Office"): <span class="required">*</span></label>
-
-                    <input list="school_list" id="school" name="school" placeholder="Type to search or select school..." required autocomplete="off">
+                    <label>School: <span class="required">*</span></label>
+                    <input list="school_list" id="school" placeholder="Select or type school" required>
                     <datalist id="school_list">
-                        <option value="Academia Progresiva De Manila Inc.">
-                        <option value="Addition Hills IS">
-                        <option value="Amado T. Reyes Child Study Center Inc.">
-                        <option value="Amado T. Reyes ES">
-                        <option value="Andres Bonifacio IS">
-                        <option value="Angeli Dei School Inc.">
-                        <option value="Arellano University Plaridel Campus">
-                        <option value="Bonifacio Javier NHS">
-                        <option value="Cascades School Inc.">
-                        <option value="City of Mandaluyong Science HS">
-                        <option value="Clayton Learning Center Philippines Inc.">
-                        <option value="Curum Christian School">
-                        <option value="Doña Basilisa Yangco ES">
-                        <option value="Doña Pilar C. Gonzaga ES">
-                        <option value="Don Bosco Technical College">
-                        <option value="Esperanza Kids Castle Learning Center Inc.">
-                        <option value="Eulogio Rodriguez IS">
-                        <option value="Filemon P. Javier ES">
-                        <option value="Future Minds Academy of Mandaluyong Inc.">
-                        <option value="Gateways Institute of Science and Technology">
-                        <option value="Good Shepherd Christian School">
-                        <option value="Headstart Schools of Mandaluyong">
-                        <option value="Highway Hills IS">
-                        <option value="Holistic Education Montesorri Inc.">
-                        <option value="Hulo Integrated School">
-                        <option value="Hulo IS">
-                        <option value="Ilaya Barangka IS">
-                        <option value="Independent Living Center">
-                        <option value="International Baptist College">
-                        <option value="International Training Center and Hospitality Institute">
-                        <option value="Isaac Lopez IS">
-                        <option value="Jose Fabella MS">
-                        <option value="Jose Rizal University">
-                        <option value="Keys School Manila">
-                        <option value="KIDS Integral Development through Skillful Learning">
-                        <option value="Kids Center">
-                        <option value="Kites and Strings Learning Center Inc.">
-                        <option value="La Salle Green Hills">
-                        <option value="Lead Educational High School Inc.">
-                        <option value="Little Thams Learning Center">
-                        <option value="Living Stones Christian Academy Mandaluyong, Inc.">
-                        <option value="Lourdes School of Mandaluyong">
-                        <option value="Makati Hope Christian School Inc.">
-                        <option value="Mandaluyong Addition Hills ES">
-                        <option value="Mandaluyong ES">
-                        <option value="Mandaluyong HS">
-                        <option value="Maranatha Christian Academy of Mandaluyong City, Inc.">
-                        <option value="Mataas na Paaralang Neptali A. Gonzales">
-                        <option value="Mulberry Learning">
-                        <option value="Nueve de Febrero ES">
-                        <option value="Our Lady of Guadalupe Colleges Inc.">
-                        <option value="Pedro P. Cruz ES">
-                        <option value="Plainview ES">
-                        <option value="Pleasant Hills ES">
-                        <option value="Precious Saviour and Redeemer Academy">
-                        <option value="Rainbow Room Learning Center Inc.">
-                        <option value="Renato Lopez ES">
-                        <option value="Rizal Technological University">
-                        <option value="Saint John Bosco Institute of Arts and Sciences Inc.">
-                        <option value="San Felipe Neri Catholic School">
-                        <option value="Schools Division Office of Mandaluyong">
-                        <option value="Senate President Neptali A. Gonzales">
-                        <option value="Smart Kids Learning Center">
-                        <option value="St. Anthony of Makati Montersorri School">
-                        <option value="St. Therese Private School, Inc.">
+                        <!-- Same list as before -->
+                        <option value="Academia Progresiva De Manila Inc."><option value="Addition Hills IS"><option value="Amado T. Reyes Child Study Center Inc.">
+                        <option value="Amado T. Reyes ES"><option value="Andres Bonifacio IS"><option value="Angeli Dei School Inc.">
+                        <option value="Arellano University Plaridel Campus"><option value="Bonifacio Javier NHS"><option value="Cascades School Inc.">
+                        <option value="City of Mandaluyong Science HS"><option value="Clayton Learning Center Philippines Inc."><option value="Curum Christian School">
+                        <option value="Doña Basilisa Yangco ES"><option value="Doña Pilar C. Gonzaga ES"><option value="Don Bosco Technical College">
+                        <option value="Esperanza Kids Castle Learning Center Inc."><option value="Eulogio Rodriguez IS"><option value="Filemon P. Javier ES">
+                        <option value="Future Minds Academy of Mandaluyong Inc."><option value="Gateways Institute of Science and Technology">
+                        <option value="Good Shepherd Christian School"><option value="Headstart Schools of Mandaluyong"><option value="Highway Hills IS">
+                        <option value="Holistic Education Montesorri Inc."><option value="Hulo Integrated School"><option value="Hulo IS">
+                        <option value="Ilaya Barangka IS"><option value="Independent Living Center"><option value="International Baptist College">
+                        <option value="International Training Center and Hospitality Institute"><option value="Isaac Lopez IS"><option value="Jose Fabella MS">
+                        <option value="Jose Rizal University"><option value="Keys School Manila"><option value="KIDS Integral Development through Skillful Learning">
+                        <option value="Kids Center"><option value="Kites and Strings Learning Center Inc."><option value="La Salle Green Hills">
+                        <option value="Lead Educational High School Inc."><option value="Little Thams Learning Center">
+                        <option value="Living Stones Christian Academy Mandaluyong, Inc."><option value="Lourdes School of Mandaluyong">
+                        <option value="Makati Hope Christian School Inc."><option value="Mandaluyong Addition Hills ES"><option value="Mandaluyong ES">
+                        <option value="Mandaluyong HS"><option value="Maranatha Christian Academy of Mandaluyong City, Inc.">
+                        <option value="Mataas na Paaralang Neptali A. Gonzales"><option value="Mulberry Learning"><option value="Nueve de Febrero ES">
+                        <option value="Our Lady of Guadalupe Colleges Inc."><option value="Pedro P. Cruz ES"><option value="Plainview ES">
+                        <option value="Pleasant Hills ES"><option value="Precious Saviour and Redeemer Academy"><option value="Rainbow Room Learning Center Inc.">
+                        <option value="Renato Lopez ES"><option value="Rizal Technological University"><option value="Saint John Bosco Institute of Arts and Sciences Inc.">
+                        <option value="San Felipe Neri Catholic School"><option value="Schools Division Office of Mandaluyong"><option value="Senate President Neptali A. Gonzales">
+                        <option value="Smart Kids Learning Center"><option value="St. Anthony of Makati Montersorri School"><option value="St. Therese Private School, Inc.">
                         <option value="Urban School for Children">
                     </datalist>
                 </div>
 
-                <div class="form-group">
-                    <label for="date">Date:</label>
-                    <input type="text" id="date" name="date" class="readonly-field" readonly>
+                <div class="row-2">
+                    <div class="form-group"><label>Date:</label><input type="text" id="currentDate" class="readonly-field" readonly></div>
+                    <div class="form-group"><label>Time:</label><input type="text" id="currentTime" class="readonly-field" readonly></div>
                 </div>
 
-                <div class="form-group">
-                    <label for="time">Time:</label>
-                    <input type="text" id="time" name="time" class="readonly-field" readonly>
+                <div style="margin-bottom: 30px; padding: 15px; background: #eef; border-radius: 10px;">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacyConsent">
+                        <label for="privacyConsent" style="font-size: 14px; margin:0;">I hereby authorise (Pinahihintulutan ko) the SDO Mandaluyong to collect and process the data indicated herein for the purpose of effecting control of the request slip system. I understand that my personal information is protected by RA 10173, the Data Privacy Act of 2012. <span class="required">*</span></label>
+                    </div>
                 </div>
 
-                <!-- MODIFIED CHECKLIST SECTION -->
-                <div class="documents-section">
-                    <h3>Checklist: <span class="required">*</span></h3>
-                    
+                <!-- CHECKLIST SECTION -->
+                <div class="section-box">
+                    <h3 class="section-title">Action & Documents <span class="required">*</span></h3>
+                   
                     <div class="checkbox-group">
-                        <input type="checkbox" id="chk_coe" name="documents" value="Certificate of Employment">
-                        <label for="chk_coe">Certificate of Employment</label>
+                        <input type="checkbox" id="action-inquiry" value="Inquiry"> <label for="action-inquiry" style="margin:0; font-weight: bold;">Inquiry</label>
                     </div>
-                    
                     <div class="checkbox-group">
-                        <input type="checkbox" id="chk_coe_comp" name="documents" value="Certificate of Employment w/ compensation">
-                        <label for="chk_coe_comp">Certificate of Employment w/ compensation</label>
+                        <input type="checkbox" id="action-request" value="Request" onchange="toggleSections()"> <label for="action-request" style="margin:0; font-weight: bold;">Request Document/Service</label>
                     </div>
-                    
                     <div class="checkbox-group">
-                        <input type="checkbox" id="chk_sr" name="documents" value="Service Record (SR)">
-                        <label for="chk_sr">Service Record (SR)</label>
+                        <input type="checkbox" id="action-submission" value="Submission" onchange="toggleSections()"> <label for="action-submission" style="margin:0; font-weight: bold;">Submit Document</label>
                     </div>
 
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="chk_philhealth" name="documents" value="PHILHEALTH Remittance Certificate">
-                        <label for="chk_philhealth">PHILHEALTH Remittance Certificate</label>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="chk_pagibig" name="documents" value="PAG-IBIG Remittance Certificate">
-                        <label for="chk_pagibig">PAG-IBIG Remittance Certificate</label>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="chk_maternity" name="documents" value="Maternity Leave">
-                        <label for="chk_maternity">Maternity Leave</label>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="chk_transfer" name="documents" value="Transfer/Resign/Retired/Travel">
-                        <label for="chk_transfer">Transfer/Resign/Retired/Travel</label>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="chk_recruit" name="documents" value="Recruitment/Hiring Process">
-                        <label for="chk_recruit">Recruitment/Hiring Process</label>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="chk_appointment" name="documents" value="Copy of Appointment">
-                        <label for="chk_appointment">Copy of Appointment</label>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="chk_form6" name="documents" value="Form 6/Leave Filing">
-                        <label for="chk_form6">Form 6/Leave Filing</label>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="chk_salary" name="documents" value="Salary">
-                        <label for="chk_salary">Salary</label>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="chk_payslip" name="documents" value="Payslip">
-                        <label for="chk_payslip">Payslip</label>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="chk_allowance" name="documents" value="Allowances">
-                        <label for="chk_allowance">Allowances</label>
-                    </div>
-
-                    <!-- PERSONAL ACTION PARENT -->
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="personalAction" name="documents" value="Personal Action">
-                        <label for="personalAction">Personal Action</label>
-                    </div>
-
-                    <!-- PERSONAL ACTION CHILDREN (Initially Hidden) -->
-                    <div class="sub-options" id="personalActionSubOptions">
-                        <div class="sub-checkbox-group">
-                            <input type="checkbox" id="pa1" name="personalActionOptions" value="Change Name (RPSU)">
-                            <label for="pa1">Change Name (RPSU)</label>
-                        </div>
-                        <div class="sub-checkbox-group">
-                            <input type="checkbox" id="pa2" name="personalActionOptions" value="Leave W/O Pay (LWOP Certificate)">
-                            <label for="pa2">Leave W/O Pay (LWOP Certificate)</label>
+                    <!-- REQUEST SECTION (Corrected Structure) -->
+                    <div id="requestSection" class="hidden animate-fade-in" style="margin-top: 20px; border-top: 2px solid #4a90e2; padding-top: 20px;">
+                        <h4 style="background: #4a90e2; color: white; padding: 5px 15px; border-radius: 15px; display: inline-block; margin-bottom: 15px;">Documents to REQUEST</h4>
+                       
+                        <div class="row-4">
+                            <!-- Window 1 -->
+                            <div>
+                                <div class="subsection-title">Window 1</div>
+                                <div id="req-w1"></div>
+                                <div id="req-w1-complex"></div> 
+                                
+                                <!-- EXTERNAL SERVICES (Now inside Window 1 column) -->
+                                <div style="margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 10px;">
+                                    <div class="subsection-title" style="color: #666; font-size: 14px;">External Services</div>
+                                    <div id="req-external"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Window 2 -->
+                            <div>
+                                <div class="subsection-title">Window 2</div>
+                                <div id="req-w2"></div>
+                            </div>
+                            
+                            <!-- Window 3 -->
+                            <div>
+                                <div class="subsection-title">Window 3</div>
+                                <div id="req-w3-gsis"></div> <!-- GSIS Complex -->
+                                <div id="req-w3"></div> <!-- Pag-ibig/Philhealth -->
+                            </div>
+                            
+                            <!-- Window 4 -->
+                            <div>
+                                <div class="subsection-title">Window 4</div>
+                                <div id="req-w4"></div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- GSIS CONCERN PARENT -->
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="gsisConcern" name="documents" value="GSIS Concern">
-                        <label for="gsisConcern">GSIS Concern</label>
-                    </div>
-
-                    <!-- GSIS CONCERN CHILDREN (Initially Hidden) -->
-                    <div class="sub-options" id="gsisSubOptions">
-                        <div class="sub-checkbox-group">
-                            <input type="checkbox" id="gsis1" name="gsisOptions" value="Remittance Certificate">
-                            <label for="gsis1">Remittance Certificate</label>
-                        </div>
-                        <div class="sub-checkbox-group">
-                            <input type="checkbox" id="gsis2" name="gsisOptions" value="Change Name">
-                            <label for="gsis2">Change Name</label>
-                        </div>
-                        <div class="sub-checkbox-group">
-                            <input type="checkbox" id="gsis3" name="gsisOptions" value="Change Date of Birth">
-                            <label for="gsis3">Change Date of Birth</label>
-                        </div>
-                        <div class="sub-checkbox-group">
-                            <input type="checkbox" id="gsis4" name="gsisOptions" value="Change Status">
-                            <label for="gsis4">Change Status</label>
-                        </div>
-                        <div class="sub-checkbox-group">
-                            <input type="checkbox" id="gsis5" name="gsisOptions" value="Update Mobile/Home Address">
-                            <label for="gsis5">Update Mobile/Home Address</label>
+                    <!-- SUBMISSION SECTION (No External Services here) -->
+                    <div id="submissionSection" class="hidden animate-fade-in" style="margin-top: 20px; border-top: 2px solid #27ae60; padding-top: 20px;">
+                        <h4 style="background: #27ae60; color: white; padding: 5px 15px; border-radius: 15px; display: inline-block; margin-bottom: 15px;">Documents to SUBMIT</h4>
+                       
+                        <div class="row-4">
+                            <!-- Window 1 -->
+                            <div>
+                                <div class="subsection-title green">Window 1</div>
+                                <div id="sub-w1"></div>
+                                <div id="sub-w1-complex"></div>
+                            </div>
+                            <!-- Window 2 -->
+                            <div>
+                                <div class="subsection-title green">Window 2</div>
+                                <div id="sub-w2"></div>
+                            </div>
+                            <!-- Window 3 -->
+                            <div>
+                                <div class="subsection-title green">Window 3</div>
+                                <div id="sub-w3-gsis"></div>
+                                <div id="sub-w3"></div>
+                            </div>
+                            <!-- Window 4 -->
+                            <div><div class="subsection-title green">Window 4</div><div id="sub-w4"></div></div>
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn">Submit</button>
+                <button type="submit" id="submitBtn" class="submit-btn">Submit Request</button>
             </form>
         </div>
        
+        <!-- FOOTER -->
         <div class="footer">
             <div class="footer-content">
                 <div class="footer-icon">📍</div>
-                <span class="footer-text">Highway Hills ES, Calbayog St., Mandaluyong City, NCR, Philippines</span>
+                <span class="footer-text">Highway Hills ES, Calbayog St., Mandaluyong City</span>
             </div>
         </div>
     </div>
-   
-    <!-- Tiger Speech Bubble -->
-    <div class="tiger-speech-bubble" id="tigerSpeech">
-        Press Me to Contact Us! 🐾
-    </div>
-   
-    <!-- Contact Popup -->
+
+    <!-- TIGER OVERLAYS -->
+    <div class="tiger-speech-bubble" id="tigerSpeech">Press Me to Contact Us! 🐾</div>
     <div class="contact-popup" id="contactPopup">
         <button class="close-contact" onclick="closeContactPopup()">×</button>
         <h3>Contact Us</h3>
-        <div class="contact-item">
-            <span class="contact-icon">📞</span>
-            <span class="contact-text"><a href="tel:0279453707">(02) 7945-3707</a></span>
-        </div>
-        <div class="contact-item">
-            <span class="contact-icon">✉️</span>
-            <!-- CHANGED TO DIRECT GMAIL LINK -->
-            <span class="contact-text">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sdo.mandaluyong@deped.gov.ph" target="_blank">
-                    sdo.mandaluyong@deped.gov.ph
-                </a>
-            </span>
-        </div>
+        <div class="contact-item"><span class="contact-icon">📞</span><span class="contact-text"><a href="tel:0279453707">(02) 7945-3707</a></span></div>
+        <div class="contact-item"><span class="contact-icon">✉️</span><span class="contact-text"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=sdo.mandaluyong@deped.gov.ph" target="_blank">sdo.mandaluyong@deped.gov.ph</a></span></div>
     </div>
-   
-    <!-- Tiger Mascot with Contact Button -->
     <div class="mascot-container">
-        <div class="tiger-mascot" title="Click me for contact info!" onclick="toggleContact()">
-            <div class="tiger-face">🐯</div>
-        </div>
+        <div class="tiger-mascot" title="Click me for contact info!" onclick="toggleContact()"><div class="tiger-face">🐯</div></div>
         <button class="contact-btn" id="contactBtn" onclick="toggleContact()">Contact Us</button>
     </div>
 
-    <!-- Confirmation Modal -->
+    <!-- MODALS -->
     <div id="confirmModal" class="modal">
         <div class="modal-content">
-            <h2>Confirm Submission</h2>
-            <p>Are you sure you want to submit this document request?</p>
+            <h2 style="color:#4a90e2; margin-bottom: 10px;">Confirm Transaction</h2>
+            <p>Are you sure you want to proceed?</p>
             <div class="modal-buttons">
-                <button class="modal-btn btn-cancel" onclick="closeConfirmModal()">Cancel</button>
-                <button class="modal-btn btn-confirm" onclick="confirmSubmit()">Yes, Submit</button>
+                <button class="modal-btn btn-cancel" onclick="closeModal('confirmModal')">Cancel</button>
+                <button class="modal-btn btn-confirm" onclick="sendToFirebase()">Yes, Submit</button>
             </div>
         </div>
     </div>
-
-    <!-- Success Modal -->
     <div id="successModal" class="modal">
         <div class="modal-content">
-            <h2>Submission Successful!</h2>
-            <p>Your request has been submitted to the HR Queue.</p>
-            <button class="modal-btn btn-ok" onclick="closeSuccessModal()">OK</button>
+            <h2 style="color: #27ae60; margin-bottom: 10px;">Success!</h2>
+            <p>Your request has been queued.</p>
+            <button class="modal-btn btn-cancel" onclick="resetForm()" style="margin-top: 20px;">OK</button>
         </div>
     </div>
 
-    <!-- FIREBASE AND APP LOGIC -->
+    <!-- FIREBASE SDK -->
     <script type="module">
-        // 1. IMPORT FIREBASE (Using CDN for plain HTML)
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
-
-        // ------------------------------------------------------------------
-        // 2. PASTE YOUR FIREBASE CONFIG HERE (Exact same as your React App)
-        // ------------------------------------------------------------------
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        
         const firebaseConfig = {
-            apiKey: "AIzaSyCsAzhuOeYVynBOAPy8Kg0Z7MpTalNJhmU", 
-            authDomain: "hr-queuing-system.firebaseapp.com", 
-            databaseURL: "https://hr-queuing-system-default-rtdb.asia-southeast1.firebasedatabase.app", 
-            projectId: "hr-queuing-system", 
-            storageBucket: "hr-queuing-system.firebasestorage.app", 
-            messagingSenderId: "31106821738", 
-            appId: "1:31106821738:web:e3ed68d3fb29b942c22413" 
+            apiKey: "AIzaSyCsAzhuOeYVynBOAPy8Kg0Z7MpTalNJhmU",
+            authDomain: "hr-queuing-system.firebaseapp.com",
+            databaseURL: "https://hr-queuing-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "hr-queuing-system",
+            storageBucket: "hr-queuing-system.firebasestorage.app",
+            messagingSenderId: "31106821738",
+            appId: "1:31106821738:web:e3ed68d3fb29b942c22413"
         };
-        // ------------------------------------------------------------------
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
+        const database = getDatabase(app);
+        const auth = getAuth(app);
+        
+        const loginScreen = document.getElementById('login-screen');
+        const mainContainer = document.getElementById('mainContainer');
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
 
-        // --- GLOBAL WINDOW FUNCTIONS (To allow HTML buttons to call module functions) ---
-        window.confirmSubmit = confirmSubmit;
-        window.closeConfirmModal = closeConfirmModal;
-        window.closeSuccessModal = closeSuccessModal;
-        window.toggleContact = toggleContact;
-        window.closeContactPopup = closeContactPopup;
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginScreen.classList.add('hidden');
+                mainContainer.classList.remove('hidden');
+                const speech = document.getElementById('tigerSpeech');
+                if(speech) {
+                    setTimeout(() => speech.classList.add('show'), 1000);
+                    setTimeout(() => speech.classList.remove('show'), 6000);
+                }
+            } else {
+                loginScreen.classList.remove('hidden');
+                mainContainer.classList.add('hidden');
+            }
+        });
 
-        // --- 1. DateTime Logic ---
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            loginError.innerText = "Verifying...";
+            signInWithEmailAndPassword(auth, email, password)
+                .catch((error) => { loginError.innerText = "Access Denied: " + error.message; });
+        });
+
+        window.pushDataToFirebase = function(data) {
+            const dbRef = ref(database, 'queue');
+            const newEntryRef = push(dbRef);
+            return set(newEntryRef, data);
+        };
+    </script>
+
+    <!-- FORM LOGIC -->
+    <script>
+        // --- HIDDEN TIMER LOGIC ---
+        let formStartTime = null;
+        let formHasStarted = false;
+        document.addEventListener('input', function() {
+            if (!formHasStarted) {
+                formHasStarted = true;
+                formStartTime = Date.now();
+            }
+        });
+
+        // --- DATA STRUCTURE (UPDATED) ---
+        const DOCS = {
+            // Window 1 Standard
+            w1: ["Original Appointment", "Plantilla Allocation List", "Travel Order"],
+            // Window 1 Complex
+            appt: ["New Appointment", "Promotion", "Reclassification", "Transfer"],
+            personal: ["Resignation", "Retirement", "Maternity Leave", "Travel Abroad"],
+            // Window 1 External
+            ext: ["Permit to Operate Application",
+"Government Recognition Application",
+"Special Order (SO) Application",
+"Permit Renewal Application",
+"Tuition Fee Increase Application",
+"SHS Voucher Program",],
+            
+            // Window 2
+            w2: ["Service Record", "Certificate of Employment (COE)", "Form 6 (Leave)"],
+            
+            // Window 3
+            w3: ["Pag-ibig Loan App", "PhilHealth Form"],
+            gsis: ["Loan Confirmation", "Retirement Benefit", "Update Information"],
+            
+            // Window 4
+            w4: ["Certificate of Last Payment", "Notice of Salary Adjustment", "Provident Fund", "COC / Service Credits"]
+        };
+
+
+        // --- RENDER FUNCTIONS ---
+        function createCheckboxes(targetId, items, prefix, className = "") {
+            const container = document.getElementById(targetId);
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "checkbox-row";
+                const id = `${prefix}-${item.replace(/[^a-zA-Z0-9]/g, '')}`;
+               
+                div.innerHTML = `
+                    <input type="checkbox" id="${id}" value="${item}" class="${className}">
+                    <label for="${id}" class="checkbox-label">${item}</label>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function createComplexToggle(targetId, label, subItems, prefix, className) {
+            const container = document.getElementById(targetId);
+            const mainId = `${prefix}-main`;
+            const subContainerId = `${prefix}-sub`;
+           
+            const html = `
+                <div style="margin-top: 8px;">
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="${mainId}" class="${className}-main" onchange="toggleSub('${subContainerId}', this.checked)">
+                        <label for="${mainId}" class="checkbox-label" style="font-weight:bold;">${label}</label>
+                    </div>
+                    <div id="${subContainerId}" class="sub-container closed"></div>
+                </div>
+            `;
+            container.innerHTML += html;
+           
+            setTimeout(() => {
+                createCheckboxes(subContainerId, subItems, prefix, className);
+            }, 0);
+        }
+
+        // --- INITIALIZATION (UPDATED FOR NEW LAYOUT) ---
+        // Request Window 1
+        createCheckboxes('req-w1', DOCS.w1, 'req-w1', 'req-cb');
+        createComplexToggle('req-w1-complex', 'Appointment Processing', DOCS.appt, 'req-appt', 'req-cb');
+        createComplexToggle('req-w1-complex', 'Personal Action', DOCS.personal, 'req-pa', 'req-cb');
+        createCheckboxes('req-external', DOCS.ext, 'req-ext', 'req-cb'); // External inside W1 (Request only)
+
+        // Request Other Windows
+        createCheckboxes('req-w2', DOCS.w2, 'req-w2', 'req-cb');
+        createComplexToggle('req-w3-gsis', 'GSIS Concern', DOCS.gsis, 'req-gsis', 'req-cb');
+        createCheckboxes('req-w3', DOCS.w3, 'req-w3', 'req-cb');
+        createCheckboxes('req-w4', DOCS.w4, 'req-w4', 'req-cb');
+       
+        // Submission (No External)
+        createCheckboxes('sub-w1', DOCS.w1, 'sub-w1', 'sub-cb');
+        createComplexToggle('sub-w1-complex', 'Appointment Processing', DOCS.appt, 'sub-appt', 'sub-cb');
+        createComplexToggle('sub-w1-complex', 'Personal Action', DOCS.personal, 'sub-pa', 'sub-cb');
+        createCheckboxes('sub-w2', DOCS.w2, 'sub-w2', 'sub-cb');
+        createComplexToggle('sub-w3-gsis', 'GSIS Concern', DOCS.gsis, 'sub-gsis', 'sub-cb');
+        createCheckboxes('sub-w3', DOCS.w3, 'sub-w3', 'sub-cb');
+        createCheckboxes('sub-w4', DOCS.w4, 'sub-w4', 'sub-cb');
+
+
+        // --- TIME ---
         function updateDateTime() {
             const now = new Date();
-            const date = now.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
-            const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-            document.getElementById('date').value = date;
-            document.getElementById('time').value = time;
+            document.getElementById('currentDate').value = now.toLocaleDateString('en-US');
+            document.getElementById('currentTime').value = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
         }
+        setInterval(updateDateTime, 1000);
         updateDateTime();
 
-        // --- 2. Sorting Schools ---
-        document.addEventListener("DOMContentLoaded", function () {
-            const datalist = document.getElementById("school_list");
-            if(datalist) {
-                const options = Array.from(datalist.getElementsByTagName("option"));
-                options.sort((a, b) => a.value.localeCompare(b.value));
-                datalist.innerHTML = '';
-                options.forEach(option => datalist.appendChild(option));
-            }
-            const speech = document.getElementById('tigerSpeech');
-            setTimeout(() => speech.classList.add('show'), 1000);
-            setTimeout(() => speech.classList.remove('show'), 6000);
-        });
-
-        // --- 3. Sub-Option Toggle Logic ---
-        
-        // GSIS Logic
-        document.getElementById('gsisConcern').addEventListener('change', function() {
-            const subOptions = document.getElementById('gsisSubOptions');
-            if (this.checked) {
-                subOptions.classList.add('active');
-            } else {
-                subOptions.classList.remove('active');
-                // Uncheck children if parent is unchecked
-                document.querySelectorAll('input[name="gsisOptions"]').forEach(cb => cb.checked = false);
-            }
-        });
-
-        // Personal Action Logic
-        document.getElementById('personalAction').addEventListener('change', function() {
-            const subOptions = document.getElementById('personalActionSubOptions');
-            if (this.checked) {
-                subOptions.classList.add('active');
-            } else {
-                subOptions.classList.remove('active');
-                // Uncheck children if parent is unchecked
-                document.querySelectorAll('input[name="personalActionOptions"]').forEach(cb => cb.checked = false);
-            }
-        });
-
-        // --- 4. Form Submit Interception ---
-        document.getElementById('documentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Check if at least one checkbox (main or sub) is checked
-            const allCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-            if (allCheckboxes.length === 0) {
-                alert('Please select at least one document from the checklist.');
-                return;
-            }
-
-            // School Validation
-            const schoolInput = document.getElementById('school');
-            const schoolList = document.getElementById('school_list');
-            const validOptions = Array.from(schoolList.options).map(opt => opt.value);
-            if (schoolInput.value && !validOptions.includes(schoolInput.value)) {
-                alert('Please select a valid school from the list.');
-                return;
-            }
-
-            // NEW: Position Validation
-            const positionInput = document.getElementById('position');
-            const positionList = document.getElementById('position_list');
-            const validPositions = Array.from(positionList.options).map(opt => opt.value);
-            if (positionInput.value && !validPositions.includes(positionInput.value)) {
-                alert('Please select a valid position from the list. If your position is not listed, please check the spelling or select the closest match.');
-                return;
-            }
-
-            document.getElementById('confirmModal').classList.add('active');
-        });
-
-        function closeConfirmModal() {
-            document.getElementById('confirmModal').classList.remove('active');
+        // --- INTERACTIVITY ---
+        function toggleRepresentative(isRep) {
+            const fields = document.getElementById('representativeFields');
+            isRep ? fields.classList.remove('hidden') : fields.classList.add('hidden');
         }
 
-        // --- 5. SUBMIT TO FIREBASE ---
-        async function confirmSubmit() {
-            closeConfirmModal();
-            
-            // Gather Data
-            const fName = document.getElementById('firstName').value;
-            const mInit = document.getElementById('middleInitial').value;
-            const lName = document.getElementById('lastName').value;
-            
-            // Format name
-            const fullName = `${fName} ${mInit ? mInit + '. ' : ''}${lName}`;
-            
-            // Gather Documents
-            const docList = [];
-            
-            // 1. Get standard checkboxes
-            document.querySelectorAll('input[name="documents"]:checked').forEach(cb => {
-                docList.push(cb.value);
+        function toggleSections() {
+            const isReq = document.getElementById('action-request').checked;
+            const isSub = document.getElementById('action-submission').checked;
+            const reqSec = document.getElementById('requestSection');
+            const subSec = document.getElementById('submissionSection');
+            isReq ? reqSec.classList.remove('hidden') : reqSec.classList.add('hidden');
+            isSub ? subSec.classList.remove('hidden') : subSec.classList.add('hidden');
+        }
+
+        function toggleSub(id, checked) {
+            const el = document.getElementById(id);
+            if(checked) {
+                el.classList.remove('closed');
+                el.classList.add('open');
+            } else {
+                el.classList.remove('open');
+                el.classList.add('closed');
+                el.querySelectorAll('input').forEach(i => i.checked = false);
+            }
+        }
+
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+
+        function resetForm() {
+            document.getElementById('requestForm').reset();
+            toggleSections();
+            toggleRepresentative(false);
+            document.querySelectorAll('.sub-container').forEach(el => {
+                el.classList.remove('open');
+                el.classList.add('closed');
             });
-
-            // 2. Get Personal Action sub-options if parent is checked
-            if (document.getElementById('personalAction').checked) {
-                const paOptions = [];
-                document.querySelectorAll('input[name="personalActionOptions"]:checked').forEach(cb => paOptions.push(cb.value));
-                if (paOptions.length > 0) {
-                     // Add specifically detailed items
-                     docList.push('Personal Action: ' + paOptions.join(', '));
-                }
-            }
-
-            // 3. Get GSIS sub-options if parent is checked
-            if (document.getElementById('gsisConcern').checked) {
-                const gsisOptions = [];
-                document.querySelectorAll('input[name="gsisOptions"]:checked').forEach(cb => gsisOptions.push(cb.value));
-                if (gsisOptions.length > 0) {
-                     docList.push('GSIS: ' + gsisOptions.join(', '));
-                }
-            }
-
-            // Create Object for Firebase
-            const newEntry = {
-                name: fullName,
-                school: document.getElementById('school').value,
-                position: document.getElementById('position').value,
-                date: document.getElementById('date').value,
-                time: document.getElementById('time').value, // Added Time Here
-                documents: docList.join(', '), 
-                status: 'waiting',
-                timestamp: Date.now()
-            };
-           
-            console.log('Sending to Firebase:', newEntry);
-           
-            try {
-                // PUSH TO FIREBASE REALTIME DATABASE
-                await push(ref(db, 'queue'), newEntry);
-                
-                // Show success modal
-                document.getElementById('successModal').classList.add('active');
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                alert('Error connecting to system. Please check internet connection.');
-            }
+            formHasStarted = false;
+            formStartTime = null;
+            closeModal('successModal');
         }
 
-        function closeSuccessModal() {
-            document.getElementById("successModal").classList.remove("active");
-            const form = document.getElementById("documentForm");
-            form.reset();
-            
-            // Hide sub-options
-            document.getElementById('gsisSubOptions').classList.remove('active');
-            document.getElementById('personalActionSubOptions').classList.remove('active');
-            
-            updateDateTime();
-        }
-       
+        // --- MASCOT FUNCTIONS ---
         function toggleContact() {
             const popup = document.getElementById('contactPopup');
             const speech = document.getElementById('tigerSpeech');
             popup.classList.toggle('show');
             if(popup.classList.contains('show')) speech.classList.remove('show');
         }
-       
-        function closeContactPopup() {
-            document.getElementById('contactPopup').classList.remove('show');
+        function closeContactPopup() { document.getElementById('contactPopup').classList.remove('show'); }
+
+
+        // --- SUBMISSION ---
+        document.getElementById('requestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            function isValueInDatalist(inputId, datalistId) {
+                const input = document.getElementById(inputId);
+                const list = document.getElementById(datalistId);
+                const options = Array.from(list.options).map(opt => opt.value);
+                return options.includes(input.value);
+            }
+            if (!isValueInDatalist('position', 'position_list')) {
+                alert("Please select a valid Position from the provided list.");
+                document.getElementById('position').value = ""; document.getElementById('position').focus(); return;
+            }
+            if (!isValueInDatalist('school', 'school_list')) {
+                alert("Please select a valid School from the provided list.");
+                document.getElementById('school').value = ""; document.getElementById('school').focus(); return;
+            }
+            if(!document.getElementById('privacyConsent').checked) { alert("Please agree to privacy consent."); return; }
+            if(!document.getElementById('action-inquiry').checked && !document.getElementById('action-request').checked && !document.getElementById('action-submission').checked) {
+                alert("Please select a transaction type."); return;
+            }
+            openModal('confirmModal');
+        });
+
+        async function sendToFirebase() {
+            closeModal('confirmModal');
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "Processing...";
+            btn.disabled = true;
+
+            const formEndTime = Date.now();
+            let durationString = "0:00";
+            if (formStartTime) {
+                const durationMs = formEndTime - formStartTime;
+                const minutes = Math.floor(durationMs / 60000);
+                const seconds = ((durationMs % 60000) / 1000).toFixed(0);
+                durationString = minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+            } else { durationString = "0:01"; }
+
+            // PASTE YOUR WEB APP URL HERE
+            const googleScriptURL = "https://script.google.com/macros/s/AKfycbzXZ9rOzkl4AnuSlj3vdfRujMc9UZeojz4qlpx0quqtXakQOC6N626jUkYCCGgrRfGavg/exec";
+
+            const data = {
+                firstName: document.getElementById('firstName').value,
+                middleInitial: document.getElementById('middleInitial').value,
+                lastName: document.getElementById('lastName').value,
+                school: document.getElementById('school').value,
+                position: document.getElementById('position').value,
+                date: document.getElementById('currentDate').value,
+                time: document.getElementById('currentTime').value,
+                isPwd: document.getElementById('pwdSenior').checked,
+                isRepresentative: document.querySelector('input[name="transactionType"]:checked').value === 'representative',
+                repName: document.getElementById('representativeName').value,
+                relationship: document.getElementById('relationship').value,
+                timestamp: Date.now(),
+                status: "waiting",
+                fillDuration: durationString
+            };
+
+            const fullName = `${data.firstName} ${data.lastName}`;
+            let actionItems = [];
+
+            if(document.getElementById('action-inquiry').checked) actionItems.push("INQUIRY: General Inquiry");
+
+            if(document.getElementById('action-request').checked) {
+                document.querySelectorAll('.req-cb:checked').forEach(cb => actionItems.push(`REQUEST: ${cb.value}`));
+                ['req-gsis-main', 'req-appt-main', 'req-pa-main'].forEach(id => {
+                    const cb = document.getElementById(id);
+                    if(cb && cb.checked) {
+                        const subId = id.replace('-main', '-sub');
+                        if(document.querySelectorAll(`#${subId} input:checked`).length === 0) {
+                            actionItems.push(`REQUEST: ${cb.nextElementSibling.innerText} (General)`);
+                        }
+                    }
+                });
+            }
+
+            if(document.getElementById('action-submission').checked) {
+                document.querySelectorAll('.sub-cb:checked').forEach(cb => actionItems.push(`SUBMIT: ${cb.value}`));
+                ['sub-gsis-main', 'sub-appt-main', 'sub-pa-main'].forEach(id => {
+                    const cb = document.getElementById(id);
+                    if(cb && cb.checked) {
+                        const subId = id.replace('-main', '-sub');
+                        if(document.querySelectorAll(`#${subId} input:checked`).length === 0) {
+                            actionItems.push(`SUBMIT: ${cb.nextElementSibling.innerText} (General)`);
+                        }
+                    }
+                });
+            }
+
+            data.documents = actionItems.join(', ');
+            data.name = fullName;
+
+            const formPayload = new FormData();
+            formPayload.append('firstName', data.firstName);
+            formPayload.append('middleInitial', data.middleInitial);
+            formPayload.append('lastName', data.lastName);
+            formPayload.append('position', data.position);
+            formPayload.append('school', data.school);
+            formPayload.append('date', data.date);
+            formPayload.append('time', data.time);
+            formPayload.append('documents', data.documents);
+            formPayload.append('isPwd', data.isPwd);
+            formPayload.append('isRepresentative', data.isRepresentative);
+            formPayload.append('repName', data.repName);
+            formPayload.append('relationship', data.relationship);
+            formPayload.append('fillDuration', durationString);
+
+            if (googleScriptURL && googleScriptURL !== "PASTE_YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
+                fetch(googleScriptURL, { method: 'POST', body: formPayload, mode: 'no-cors' })
+                .catch(err => console.error('Error sending to Google Sheet:', err));
+            }
+
+            try {
+                if(window.pushDataToFirebase) { await window.pushDataToFirebase(data); }
+                openModal('successModal');
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Failed to submit.");
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+            
         }
     </script>
 </body>
